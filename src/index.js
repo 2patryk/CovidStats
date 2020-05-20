@@ -1,14 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
-import App from './App';
 import * as serviceWorker from './serviceWorker';
+import Root from "./containers/Root";
+
+
+
+// https://api.covid19api.com/summary
+// https://api.covid19api.com/live/country/:slug
 
 ReactDOM.render(
+
   <React.StrictMode>
-    <App />
+    <Root />
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want your app to work offline and load faster, you can change

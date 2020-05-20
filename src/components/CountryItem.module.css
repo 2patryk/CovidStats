@@ -1,0 +1,8 @@
+.cases{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+.numberOf{
+    font-size: 1.4em;
+}
