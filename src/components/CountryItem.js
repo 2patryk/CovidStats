@@ -1,13 +1,21 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import styles from "./CountryItem.module.css";
+import { Link } from "react-router-dom";
 
 export default class CountryItem extends Component {
   render() {
     const { onClick, country } = this.props;
     return (
+  
       <tr onClick={onClick}>
-        <td>{country.Country}</td>
+            
+        <td className={styles.countryName}>
+        <Link to={"/" +  country.Slug}>
+          {country.Country}
+          </Link>
+          </td>
+        
         <td>
           <div className={styles.cases}>
             <span className={styles.numberOf}>{country.TotalConfirmed}</span>
@@ -37,6 +45,7 @@ export default class CountryItem extends Component {
           </div>
         </td>
       </tr>
+      
     );
   }
 }

@@ -1,14 +1,21 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 import styles from "./Header.module.css";
 import { Link } from "react-router-dom";
-// import { Provider } from "react-redux";
-// import _store from "../store/store";
+import SearchCountry from "./SearchCountry";
+import PropTypes from "prop-types";
 
-// import App from "./App";
-// const store = _store();
+class Header extends Component {
+  constructor(){
+    super();
+    this.isRoot = false;
+    this.lastIsRoot = false;
+  }
 
-export default class Root extends Component {
+
+
   render() {
+    const {onChange, searchValue} = this.props;
     return (
       <header>
         <div className="container">
@@ -20,9 +27,24 @@ export default class Root extends Component {
                 </Link>
               
             </div>
+            <div className="col-md-9">
+              
+                {(this.props.location.pathname === "/" ? true : false) ? <SearchCountry onChange={onChange} value={searchValue} /> : ""}
+              
+            </div>
           </div>
         </div>
       </header>
     );
   }
 }
+
+Header.propTypes = {
+  onChange: PropTypes.any.isRequired,
+  searchValue: PropTypes.any.isRequired,
+};
+
+
+
+export default withRouter(Header);
+

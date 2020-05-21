@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 // import PropTypes from 'prop-types'
-// import { connect } from 'react-redux'
+import { connect } from 'react-redux'
 // import {
 // fetchCountriesIfNeeded,
 
@@ -8,45 +8,32 @@ import React, { Component } from "react";
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import AllCountriesList from "./AllCountriesList";
-import Country from "../components/Country";
+import Country from "./Country";
 import Header from "../components/Header";
-import history from "../history";
 
 class App extends Component {
-  render() {
-    //   const { selectedSubreddit, posts, isFetching, lastUpdated,match: { params } } = this.props
-    //   return (
-    //     <div>
-    //       <Picker
-    //         value={params.sub || 'gonciarz'}
-    //         onChange={this.handleChange}
-    //         options={['reactjs', 'frontend', 'gonciarz']}
-    //       />
-    //       <p>
-    //         {lastUpdated && (
-    //           <span>
-    //             Last updated at {new Date(lastUpdated).toLocaleTimeString()}.{' '}
-    //           </span>
-    //         )}
-    //         {!isFetching && (
-    //           <button onClick={this.handleRefreshClick}>Refresh</button>
-    //         )}
-    //       </p>
-    //       {isFetching && posts.length === 0 && <h2>Loading...</h2>}
-    //       {!isFetching && posts.length === 0 && <h2>Empty.</h2>}
-    //       {posts.length > 0 && (
-    //         <div style={{ opacity: isFetching ? 0.5 : 1 }}>
-    //           <Posts posts={posts} />
-    //         </div>
-    //       )}
-    //     </div>
-    //   )
-    // }
+  constructor(){
+    super();
+
+    this.state = {
+      searchValue: ""
+    }
+
+    this.onSearchChanged = this.onSearchChanged.bind(this);
+  }
+
+  onSearchChanged(e){
     
+    this.setState({
+      searchValue: e.currentTarget.value
+    })
+  }
+
+  render() {
     return (
       <div>
-        <Router history={history}>
-          <Header />
+        <Router>
+          <Header onChange={this.onSearchChanged} searchValue={this.state.searchValue}/>
           <div className="container">
             <div className="row">
               <div className="col">
@@ -63,9 +50,17 @@ class App extends Component {
       </div>
     );
   }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.loading !== this.props.loading) {
+       console.log("Loading change");
+    }
 }
 
-export default App;
+
+}
+ export default App;
+
 
 // AsyncApp.propTypes = {
 //   selectedSubreddit: PropTypes.string.isRequired,
@@ -75,19 +70,11 @@ export default App;
 //   dispatch: PropTypes.func.isRequired
 // }
 
-// function mapStateToProps(state) {
-//   const { selectedSubreddit, postsBySubreddit } = state
-//   const { isFetching, lastUpdated, items: posts } = postsBySubreddit[selectedSubreddit] || {
-//     isFetching: true,
-//     items: []
-//   }
+// function mapStateToProps(state){ 
+// const { loading } = state.loading || false;
 
-//   return {
-//     selectedSubreddit,
-//     posts,
-//     isFetching,
-//     lastUpdated
-//   }
+// return { loading }
 // }
 
-// export default connect(mapStateToProps)(AsyncApp)
+
+// export default connect(mapStateToProps)(App)

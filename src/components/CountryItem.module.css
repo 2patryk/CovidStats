@@ -1,8 +1,11 @@
 .cases{
     display: flex;
-    justify-content: space-between;
-    flex-direction: column;
+    justify-content: baseline;
 }
 .numberOf{
+    font-size: 1.4em;
+}
+.countryName{
+    font-weight: 600;
     font-size: 1.4em;
 }
