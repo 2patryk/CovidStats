@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { fetchCountriesIfNeeded, invalidateCountries } from "../store/actions";
+import { fetchCountriesIfNeeded, invalidateCountries } from "../store/actions/AllCountriesActions";
 import { connect } from "react-redux";
 import CountriesList from "../components/CountriesList";
-import history from '../history'
 import isEmptyObject from '../utils/utils'
 import ErrorMessage from "../components/ErrorMessage";
 class AllCountriesList extends Component {
@@ -51,15 +50,13 @@ class AllCountriesList extends Component {
       countries,
       isFetching,
       lastUpdated,
-      haveError,
-      lastError,
+      haveError
     } = this.props;
     return (
       <div>
         {haveError ? (
           <ErrorMessage
             onClick={this.handleRefreshClick}
-            message={lastError.message}
           />
         ) : (
           ""
@@ -88,7 +85,6 @@ AllCountriesList.propTypes = {
   lastUpdated: PropTypes.number,
   dispatch: PropTypes.func.isRequired,
   haveError: PropTypes.bool,
-  lastError: PropTypes.object,
 };
 
 function mapStateToProps(state) {

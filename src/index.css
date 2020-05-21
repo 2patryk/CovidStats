@@ -1,12 +1,63 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+html {
+  font-size: 14px;
+  scroll-behavior: smooth;
+}
 
 :root {
   --text-color-normal: #040d1d;
-  --text-color-light: #79838f;
-  --main-background: white;
-  --background-light:white;
-  --background-dark:rgb(216, 216, 216);
+  --text-color-slight: rgb(117, 117, 117);
+  --text-color-light: #918f8f;
+  --text-color-vlight: rgb(224, 224, 224);
+
+  --background-color: rgb(248, 248, 248);
+  --background-color-selected: rgb(249, 249, 249);
+  --background-color-sec:rgb(255, 255, 255);
+
+  --header-color:white;
+
   --primary: rgb(121, 100, 126);
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;  /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}
+
+a:link,
+a:visited  {
+  color: var(--text-color-normal);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--text-color-slight);
+}
+a:active {
+  color: var(--text-color-light);
+
 }
 
 /* html{
@@ -20,7 +71,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: var(--main-background);
+  background-color: var(--background-color);
   color:var(--text-color-normal);
 
 }
@@ -80,12 +131,38 @@ code {
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --text-color-normal: hsl(0, 0%, 97%);
-    --text-color-light: hsl(210, 15%, 35%);
+    --text-color-normal: #e8ebf0;
+    --text-color-slight: #c1c3c5;
+    --text-color-light: #c1c3c5;
+    --text-color-vlight: rgb(73, 73, 73);
     
-    --main-background: rgb(44, 44, 44);
-    --background-light:rgb(71, 71, 71);
-    --background-dark:rgb(19, 19, 19);
+    --background-color: rgb(18, 18, 18);
+    --background-color-selected: rgb(51, 51, 51);
+    --background-color-sec:rgb(31, 31, 31);
+
+    --header-color:rgb(31, 31, 31);
     --primary: rgb(248, 172, 219);
   }
 }
+
+@media (min-width: 576px) {
+
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 992px) {
+
+}
+
+@media (min-width: 1200px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+

@@ -6,31 +6,32 @@ import SearchCountry from "./SearchCountry";
 import PropTypes from "prop-types";
 
 class Header extends Component {
-  constructor(){
+  constructor() {
     super();
     this.isRoot = false;
     this.lastIsRoot = false;
   }
 
-
-
   render() {
-    const {onChange, searchValue} = this.props;
+    const { onChange, searchValue } = this.props;
     return (
       <header>
         <div className="container">
           <div className="row">
             <div className="col-md-3">
+            <Link className={styles.logoContainer} to={"/"}>
+              {this.props.location.pathname !== "/" ? (
+                <span className={`material-icons ${styles.back}`}>arrow_back_ios</span>
+              ) : (
+                ""
+              )}
               
-                <Link to="/">
-                  <span className={styles.logo}>CovidStats</span>
-                </Link>
-              
+                <span className={styles.logo}>CovidStats</span>
+              </Link>
             </div>
             <div className="col-md-9">
-              
-                {(this.props.location.pathname === "/" ? true : false) ? <SearchCountry onChange={onChange} value={searchValue} /> : ""}
-              
+              {/* {(this.props.location.pathname === "/" ? true : false) ? <SearchCountry onChange={onChange} value={searchValue} /> : ""}
+               */}
             </div>
           </div>
         </div>
@@ -44,7 +45,4 @@ Header.propTypes = {
   searchValue: PropTypes.any.isRequired,
 };
 
-
-
 export default withRouter(Header);
-

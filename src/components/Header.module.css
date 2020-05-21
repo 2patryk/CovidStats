@@ -2,15 +2,48 @@ header{
     display: flex;
     position: sticky;
     top:0;
-    background-color: var(--main-background);
+    background-color: var(--header-color);
+    height: 60px;
     /* border-bottom: 1px solid rgb(214, 214, 214); */
     box-shadow: 0 1px 2px 0 rgba(0,0,0,.1);
     width: 100%;
     padding: 15px 0;
     z-index:10;
 }
+.logoContainer{
+display: flex;
+align-items: center;}
+
+.back{
+margin-right: 15px;
+}
 
 .logo{
    font-weight: 500;
     font-size: 1.5rem;
+}
+
+/*######################### MEDIA ######################### */
+
+@media (min-width: 576px) {
+
+}
+
+@media (min-width: 768px) {
+    .back{
+        margin-right: 20px;
+        }
+    header{
+        height: 60px;
+    }
+}
+
+@media (min-width: 992px) {
+
+}
+
+@media (min-width: 1200px) {
+    header{
+        height: 65px;
+    }
 }

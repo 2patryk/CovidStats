@@ -5,15 +5,19 @@ import PropTypes from "prop-types";
 export default class ChartView extends Component {
   constructor(props) {
     super(props);
+    this.myLineChart = null;
+
     this.chartRef = React.createRef();
     this.dataset = {};
-  }
-
-  componentWillReceiveProps() {
     
   }
 
-  componentDidUpdate(){
+  componentDidMount(){
+    this.updateData();
+    this.buildChart();
+  }
+
+  componentDidUpdate() {
     this.updateData();
     this.buildChart();
   }
@@ -32,9 +36,14 @@ export default class ChartView extends Component {
   }
 
   updateData() {
-    const filteredHistory = this.props.history.filter((value)=> value.Confirmed > 0)
+    console.log("updateData");
+    const filteredHistory = this.props.history.filter(
+      (value) => value.Confirmed > 0
+    );
     this.dataset = {
-      labels: filteredHistory.map((value) => new Date(value.date).toLocaleDateString("pl-PL")),
+      labels: filteredHistory.map((value) =>
+        new Date(value.date).toLocaleDateString("pl-PL")
+      ),
       datasets: [
         {
           label: "Confirmed",
@@ -59,36 +68,21 @@ export default class ChartView extends Component {
           fill: false,
           data: filteredHistory.map((value) => value.Recovered),
           yAxisID: "y-axis-1",
-        }
-        // {
-        //     label: 'My Second dataset',
-        //     borderColor: window.chartColors.blue,
-        //     backgroundColor: window.chartColors.blue,
-        //     fill: false,
-        //     data: [
-        //         randomScalingFactor(),
-        //         randomScalingFactor(),
-        //         randomScalingFactor(),
-        //         randomScalingFactor(),
-        //         randomScalingFactor(),
-        //         randomScalingFactor(),
-        //         randomScalingFactor()
-        //     ],
-        //     yAxisID: 'y-axis-2'
-        // }
+        },
       ],
     };
   }
 
   buildChart() {
-    var myLineChart = new Chart(this.chartRef.current, {
+    if(this.myLineChart) this.myLineChart.destroy();
+    this.myLineChart = new Chart(this.chartRef.current, {
       type: "line",
       data: this.dataset,
       options: {
         responsive: true,
         hoverMode: "index",
         stacked: false,
-        
+
         scales: {
           yAxes: [
             {
@@ -97,17 +91,6 @@ export default class ChartView extends Component {
               position: "left",
               id: "y-axis-1",
             },
-            // {
-            //   type: "linear", // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
-            //   display: true,
-            //   position: "right",
-            //   id: "y-axis-2",
-
-            //   // grid line settings
-            //   gridLines: {
-            //     drawOnChartArea: false, // only want the grid lines for one axis to show up
-            //   },
-            // },
           ],
         },
       },

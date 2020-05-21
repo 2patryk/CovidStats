@@ -2,7 +2,7 @@ import {
   REQUEST_COUNTRY,
   RECEIVE_COUNTRY,
   INVALIDATE_COUNTRY,
-} from "../actions";
+} from "../actions/SelectedCountryActions";
 
 const defaultState = {
   name: "",

@@ -7,45 +7,39 @@ export default class CountryItem extends Component {
   render() {
     const { onClick, country } = this.props;
     return (
-  
-      <tr onClick={onClick}>
-            
-        <td className={styles.countryName}>
-        <Link to={"/" +  country.Slug}>
-          {country.Country}
-          </Link>
-          </td>
-        
-        <td>
-          <div className={styles.cases}>
+<Link className={styles.link} to={"/" + country.Slug}>
+      <div className={styles.countryItem}>
+        <div className={`${styles.row} ${styles.row__name}`} onClick={onClick}>
+          <div className={`${styles.item} ${styles.item__country}`}>
+            {country.Country}
+          </div>
+        </div>
+        <div className={`${styles.row} ${styles.row__cases}`}  onClick={onClick}>
+          <div className={`${styles.item} ${styles.item__cases}`}>
             <span className={styles.numberOf}>{country.TotalConfirmed}</span>
-            <span>
-              {country.NewConfirmed > 0
-                ? "(+" + country.NewConfirmed + ")"
-                : "-"}
+            <span className={styles.new}>
+              {country.NewConfirmed > 0 ? " (+" + country.NewConfirmed + ")" : ""}
             </span>
           </div>
-        </td>
-        <td>
-          <div className={styles.cases}>
+          <div className={`${styles.item} ${styles.item__cases}`}>
             <span className={styles.numberOf}>{country.TotalDeaths}</span>
-            <span>
-              {country.NewDeaths > 0 ? "(+" + country.NewDeaths + ")" : "-"}
+            <span className={styles.new}>
+              {country.NewDeaths > 0 ? " (+" + country.NewDeaths + ")" : ""}
             </span>
           </div>
-        </td>
-        <td>
-          <div className={styles.cases}>
+
+          <div className={`${styles.item} ${styles.item__cases}`}>
             <span className={styles.numberOf}>{country.TotalRecovered}</span>
-            <span>
+            <span className={styles.new}>
               {country.NewRecovered > 0
-                ? "(+" + country.NewRecovered + ")"
-                : "-"}
+                ? " (+" + country.NewRecovered + ")"
+                : ""}
             </span>
           </div>
-        </td>
-      </tr>
-      
+        </div>
+        
+      </div>
+      </Link>
     );
   }
 }

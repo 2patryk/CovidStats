@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { fetchCountryIfNeeded, invalidateCountry } from "../store/actions";
+import { fetchCountryIfNeeded, invalidateCountry } from "../store/actions/SelectedCountryActions";
 import { connect } from "react-redux";
 import CountryView from '../components/CountryView'
 class Country extends Component {
@@ -22,8 +22,8 @@ class Country extends Component {
       match: { params },
     } = this.props;
     const oldParams = prevProps.match.params;
-    console.log(oldParams);
-    console.log(params);
+    // console.log(oldParams);
+    // console.log(params);
     if (oldParams && oldParams.country !== params.country)
       dispatch(invalidateCountry());
     dispatch(fetchCountryIfNeeded(params.country));

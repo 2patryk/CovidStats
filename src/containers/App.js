@@ -32,7 +32,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Router>
+        <Router basename="/covid/">
           <Header onChange={this.onSearchChanged} searchValue={this.state.searchValue}/>
           <div className="container">
             <div className="row">

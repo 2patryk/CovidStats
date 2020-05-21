@@ -7,19 +7,36 @@ export default class CountriesList extends Component {
   render() {
     const { onClick } = this.props;
     return (
-      <table>
-        <tbody>
-          <tr>
-            <th>Country</th>
-            <th>Confirmed cases</th>
-            <th>Deaths</th>
-            <th>Recovered</th>
-          </tr>
-          {this.props.countries.map((country, i) => (
-            <CountryItem onClick={() => onClick(country.Slug)} key={i} country={country} />
-          ))}
-        </tbody>
-      </table>
+      <div className={styles.allCases}>
+        <div className={styles.casesHeader}>
+          <div className={`${styles.row} ${styles.row__name}`}>
+            <div className={`${styles.item} ${styles.item__country}`}>
+              <span>Country</span>
+            </div>
+          </div>
+          <div
+            className={`${styles.row} ${styles.row__cases}`}
+            onClick={onClick}
+          >
+            <div className={`${styles.item} ${styles.item__cases}`}>
+              <span>Total confirmed</span>
+            </div>
+            <div className={`${styles.item} ${styles.item__cases}`}>
+              <span>Total death</span>
+            </div>
+            <div className={`${styles.item} ${styles.item__cases}`}>
+              <span>Total recovered</span>
+            </div>
+          </div>
+        </div>
+        {this.props.countries.map((country, i) => (
+          <CountryItem
+            onClick={() => onClick(country.Slug)}
+            key={i}
+            country={country}
+          />
+        ))}
+      </div>
     );
   }
 }
