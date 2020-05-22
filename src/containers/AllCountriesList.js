@@ -1,10 +1,17 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { fetchCountriesIfNeeded, invalidateCountries } from "../store/actions/AllCountriesActions";
+import {
+  fetchCountriesIfNeeded,
+  invalidateCountries,
+} from "../store/actions/AllCountriesActions";
 import { connect } from "react-redux";
 import CountriesList from "../components/CountriesList";
-import isEmptyObject from '../utils/utils'
+import isEmptyObject from "../utils/utils";
 import ErrorMessage from "../components/ErrorMessage";
+import DoughnutChart from "../components/DoughnutChart";
+import Counter from "../components/Counter";
+import styles from "./AllCountriesList.module.css";
+
 class AllCountriesList extends Component {
   constructor(props) {
     super(props);
@@ -25,15 +32,6 @@ class AllCountriesList extends Component {
     //   dispatch(fetchCountriesIfNeeded())
   }
 
-  //   handleChange(nextSubreddit) {
-  //       console.log(nextSubreddit);
-  //     //const history = useHistory();
-
-  //     //history.push("/" + nextSubreddit);
-  //     // this.props.dispatch(selectSubreddit(nextSubreddit))
-  //     // this.props.dispatch(fetchPostsIfNeeded(nextSubreddit))
-  //   }
-
   handleRefreshClick(e) {
     e.preventDefault();
     const { dispatch } = this.props;
@@ -50,17 +48,12 @@ class AllCountriesList extends Component {
       countries,
       isFetching,
       lastUpdated,
-      haveError
+      haveError,
+      summary,
     } = this.props;
     return (
       <div>
-        {haveError ? (
-          <ErrorMessage
-            onClick={this.handleRefreshClick}
-          />
-        ) : (
-          ""
-        )}
+        {haveError ? <ErrorMessage onClick={this.handleRefreshClick} /> : ""}
         {isFetching && countries.length === 0 && (
           <div className="spinner">
             <div className="bounce1"></div>
@@ -70,7 +63,30 @@ class AllCountriesList extends Component {
         )}
         {!isFetching && !haveError && countries.length === 0 && <h2>Empty.</h2>}
         {countries.length > 0 && (
-          <div style={{ opacity: isFetching ? 0.5 : 1 }}>
+          <div >
+            <div className={`row no-gutters ${styles.summaryRow}`}>
+              <div className={`col-md-6 ${styles.colLeft}`}>
+                <div className="cardMaterial">
+                <Counter data={summary}/>
+                </div>
+              </div>
+              <div className={`col-md-6 ${styles.colRight}`}>
+              <div className="cardMaterial">
+                <DoughnutChart
+                  data={{
+                    Deaths: summary.TotalDeaths,
+                    Recovered: summary.TotalRecovered,
+                    Active:
+                      summary.TotalConfirmed -
+                      summary.TotalRecovered -
+                      summary.TotalDeaths,
+                    Confirmed: summary.TotalConfirmed,
+                  }}
+                />
+                </div>
+              </div>
+            </div>
+
             <CountriesList onClick={this.goToCountry} countries={countries} />
           </div>
         )}
@@ -90,20 +106,20 @@ AllCountriesList.propTypes = {
 function mapStateToProps(state) {
   const { allCountries } = state;
 
-
-
   const {
     isFetching,
     lastUpdated,
     items: countries,
     haveError,
     lastError,
+    summary,
   } = isEmptyObject(allCountries)
     ? {
         isFetching: true,
         items: [],
         haveError: false,
         lastError: {},
+        summary: {},
       }
     : allCountries;
 
@@ -113,6 +129,7 @@ function mapStateToProps(state) {
     lastUpdated,
     haveError,
     lastError,
+    summary,
   };
 }
 

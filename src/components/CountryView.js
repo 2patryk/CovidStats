@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import ChartView from "./ChartView";
 import styles from "./CountryView.module.css";
-
+import DoughnutChart from './DoughnutChart';
 
 export default class CountryView extends Component {
   render() {
@@ -10,9 +10,20 @@ export default class CountryView extends Component {
     return (
       <div>
         <h1>{name}</h1>
-        <div>
+        <div className="row no-gutters">
+          <div className="col">
         <ChartView history={history}></ChartView>
         </div>
+        </div>
+        <div className="row no-gutters">
+              <div className="col-md-6">
+                <DoughnutChart
+                  data={
+                  history[history.length-1]
+                  }
+                />
+              </div>
+            </div>
         
       </div>
     );

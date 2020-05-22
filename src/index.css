@@ -76,13 +76,21 @@ body {
 
 }
 
+.cardMaterial{
+  background: var(--background-color-sec);
+  padding: 10px 20px;
+  border-top: 1px solid var(--text-color-vlight);
+  border-bottom: 1px solid var(--text-color-vlight);
+  margin-bottom: 10px;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
 
 .main-box{
-  padding: 10px 0;
+  padding: 0;
 }
 
 .spinner {
@@ -150,6 +158,16 @@ code {
 }
 
 @media (min-width: 768px) {
+  .main-box{
+    padding: 15px 0;
+  }
+  .cardMaterial{
+    border-radius: 3px;
+    padding: 10px 20px;
+    border:none;
+    margin-bottom: 0;
+    box-shadow: 0 1px 1px 0 rgba(0,0,0,0.14), 0 2px 1px -1px rgba(0,0,0,0.12), 0 1px 3px 0 rgba(0,0,0,0.20);
+  }
   html {
     font-size: 15px;
   }

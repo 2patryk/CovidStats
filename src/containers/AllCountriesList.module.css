@@ -1,0 +1,36 @@
+.summaryRow{
+    display: flex;
+    margin-bottom: 0;
+}
+
+.colLeft{
+    padding: 0;
+}
+.colRight{
+    padding: 0;
+}
+
+/*######################### MEDIA ######################### */
+
+@media (min-width: 576px) {
+}
+
+@media (min-width: 768px) {
+    .summaryRow{
+        display: flex;
+        margin-bottom: 15px;
+    }
+    .colLeft{
+        padding-right: 7.5px !important;
+    }
+    .colRight{
+        padding-left: 7.5px !important;
+    }
+    
+}
+
+@media (min-width: 992px) {
+}
+
+@media (min-width: 1200px) {
+}

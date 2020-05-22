@@ -34,8 +34,8 @@ class App extends Component {
       <div>
         <Router basename="/covid/">
           <Header onChange={this.onSearchChanged} searchValue={this.state.searchValue}/>
-          <div className="container">
-            <div className="row">
+          <div className="container px-0">
+            <div className="row no-gutters">
               <div className="col">
                 <div className="main-box">
                   <Switch>

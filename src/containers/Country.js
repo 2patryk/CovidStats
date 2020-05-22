@@ -36,7 +36,9 @@ class Country extends Component {
     } = this.props;
     return (
       <div>
-        <CountryView name={name} history={history} lastUpdated={lastUpdated}/>
+        {history.length > 0 ?
+        <CountryView name={name} history={history} lastUpdated={lastUpdated}/> : ""
+  }
       </div>
     );
   }
