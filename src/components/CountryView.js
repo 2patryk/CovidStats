@@ -12,16 +12,20 @@ export default class CountryView extends Component {
         <h1>{name}</h1>
         <div className="row no-gutters">
           <div className="col">
+          <div className="cardMaterial">
         <ChartView history={history}></ChartView>
+        </div>
         </div>
         </div>
         <div className="row no-gutters">
               <div className="col-md-6">
+              <div className="cardMaterial">
                 <DoughnutChart
                   data={
                   history[history.length-1]
                   }
                 />
+              </div>
               </div>
             </div>
         

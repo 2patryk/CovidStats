@@ -9,10 +9,9 @@ export default class ChartView extends Component {
 
     this.chartRef = React.createRef();
     this.dataset = {};
-    
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.updateData();
     this.buildChart();
   }
@@ -74,12 +73,17 @@ export default class ChartView extends Component {
   }
 
   buildChart() {
-    if(this.myLineChart) this.myLineChart.destroy();
+    if (this.myLineChart) this.myLineChart.destroy();
     this.myLineChart = new Chart(this.chartRef.current, {
       type: "line",
       data: this.dataset,
       options: {
         responsive: true,
+        elements: {
+          point: {
+            radius: 0,
+          },
+        },
         hoverMode: "index",
         stacked: false,
 

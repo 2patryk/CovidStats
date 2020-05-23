@@ -6,7 +6,7 @@ import {
 } from "../store/actions/AllCountriesActions";
 import { connect } from "react-redux";
 import CountriesList from "../components/CountriesList";
-import isEmptyObject from "../utils/utils";
+import { isEmptyObject } from "../utils/utils";
 import ErrorMessage from "../components/ErrorMessage";
 import DoughnutChart from "../components/DoughnutChart";
 import Counter from "../components/Counter";

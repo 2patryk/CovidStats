@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import ChartDataLabels from "chartjs-plugin-datalabels";
+import Chart from "chart.js";
 // import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 // import {
@@ -18,7 +20,7 @@ class App extends Component {
     this.state = {
       searchValue: ""
     }
-
+    Chart.plugins.unregister(ChartDataLabels);
     this.onSearchChanged = this.onSearchChanged.bind(this);
   }
 

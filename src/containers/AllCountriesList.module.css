@@ -1,6 +1,6 @@
 .summaryRow{
     display: flex;
-    margin-bottom: 0;
+    /* margin-bottom: 0; */
 }
 
 .colLeft{
@@ -16,10 +16,10 @@
 }
 
 @media (min-width: 768px) {
-    .summaryRow{
+    /* .summaryRow{
         display: flex;
         margin-bottom: 15px;
-    }
+    } */
     .colLeft{
         padding-right: 7.5px !important;
     }

@@ -10,8 +10,7 @@
 .countryItem {
   display: flex;
   flex-wrap: wrap;
-  border: 1px solid var(--text-color-vlight);
-  border-top: 0;
+  border-bottom: 1px solid var(--text-color-vlight);
   padding-bottom: 0;
   background-color: var(--background-color-sec);
 }

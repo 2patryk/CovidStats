@@ -32,7 +32,7 @@ class Country extends Component {
 
   render() {
     const {
-      match: { params },history, name, lastUpdated
+      history, name, lastUpdated
     } = this.props;
     return (
       <div>

@@ -1,8 +1,10 @@
-// import ChartDataLabels from 'chartjs-plugin-datalabels';
 import Chart from "chart.js";
+import ChartDataLabels from "chartjs-plugin-datalabels";
+
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-
+import styles from "./DoughnutChart.module.css";
+import { LightenDarkenColor } from "../utils/utils";
 export default class ChartView extends Component {
   constructor(props) {
     super(props);
@@ -26,7 +28,7 @@ export default class ChartView extends Component {
   render() {
     return (
       <div>
-        <canvas ref={this.chartRef} width="1000" height="500"></canvas>
+        <canvas ref={this.chartRef} className={styles.doughnutChart}></canvas>
       </div>
     );
   }
@@ -36,12 +38,13 @@ export default class ChartView extends Component {
       datasets: [
         {
           data: [
-            this.props.data.Active / this.props.data.Confirmed,
-            this.props.data.Deaths / this.props.data.Confirmed,
-            this.props.data.Recovered / this.props.data.Confirmed,
+            this.props.data.Active,
+            this.props.data.Deaths,
+            this.props.data.Recovered,
           ],
           backgroundColor: ["#ffeb3b", "#f44336", "#2196f3"],
           label: "Division of Confirmed cases",
+          datalabels: {},
         },
       ],
       labels: ["Active", "Deaths", "Recovered"],
@@ -53,10 +56,28 @@ export default class ChartView extends Component {
     this.myDoughnutChart = new Chart(this.chartRef.current, {
       type: "doughnut",
       data: this.dataset,
+      plugins: [ChartDataLabels],
       options: {
         plugins: {
           datalabels: {
-            color: "blue",
+            borderColor: "white",
+            borderRadius: 50,
+            borderWidth: 2,
+            backgroundColor: function (context) {
+              let ar = context.dataset.backgroundColor.map((value) => {
+                return LightenDarkenColor(value, -17);
+              });
+
+              return ar;
+            },
+            color: "white",
+            display: "true",
+            textShadowColor: "rgba(0,0,0,0.5)",
+            textShadowBlur: 5,
+            font: {
+              size: 16,
+            },
+            padding: 10,
             labels: {
               title: {
                 font: {
@@ -65,12 +86,24 @@ export default class ChartView extends Component {
               },
               value: {
                 color: "green",
+                textStrokeColor: "blue",
               },
+            },
+            formatter: function (value, context) {
+              let total = context.dataset.data.reduce(function (
+                previousValue,
+                currentValue,
+              ) {
+                return previousValue + currentValue;
+              });
+              return (value/total * 100).toFixed(2) + "%";
             },
           },
         },
         cutoutPercentage: 50,
         responsive: true,
+        aspectRatio: 1.5,
+        // maintainAspectRatio: false,
         legend: {
           display: true,
           position: "top",
@@ -86,23 +119,11 @@ export default class ChartView extends Component {
         tooltips: {
           callbacks: {
             label: function (tooltipItem, data) {
-              //get the concerned dataset
+             
               var dataset = data.datasets[tooltipItem.datasetIndex];
-              //calculate the total of this data set
-              var total = dataset.data.reduce(function (
-                previousValue,
-                currentValue,
-                currentIndex,
-                array
-              ) {
-                return previousValue + currentValue;
-              });
-              //get the current items value
               var currentValue = dataset.data[tooltipItem.index];
-              //calculate the precentage based on the total and current item, also this does a rough rounding to give a whole number
-              var percentage = ((currentValue / total) * 100).toFixed(2);
 
-              return percentage + "%";
+              return data.labels[tooltipItem.index] + ": " + currentValue.toLocaleString();
             },
           },
         },
