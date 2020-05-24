@@ -1,10 +1,12 @@
 export const LOADING_ON = "LOADING_ON";
 export const LOADING_OFF = "LOADING_OFF";
+export const SET_IS_MOBILE = "SET_IS_MOBILE";
 export const RESET_ERROR_MESSAGE = "RESET_ERROR_MESSAGE";
 
-export function turnOnLoading() {
+export function setIsMobile(payload) {
   return {
-    type: LOADING_ON,
+    type: SET_IS_MOBILE,
+    payload
   };
 }
 

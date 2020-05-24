@@ -3,12 +3,9 @@
     /* margin-bottom: 0; */
 }
 
-.colLeft{
-    padding: 0;
-}
-.colRight{
-    padding: 0;
-}
+
+
+
 
 /*######################### MEDIA ######################### */
 
@@ -20,13 +17,7 @@
         display: flex;
         margin-bottom: 15px;
     } */
-    .colLeft{
-        padding-right: 7.5px !important;
-    }
-    .colRight{
-        padding-left: 7.5px !important;
-    }
-    
+
 }
 
 @media (min-width: 992px) {

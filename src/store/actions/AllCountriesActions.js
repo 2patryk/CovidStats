@@ -3,7 +3,6 @@ import axios from "axios";
 export const REQUEST_COUNTRIES = "REQUEST_COUNTRIES";
 export const RECEIVE_COUNTRIES_SUCCESS = "RECEIVE_COUNTRIES_SUCCESS";
 export const RECEIVE_COUNTRIES_FAILURE = "RECEIVE_COUNTRIES_FAILURE";
-
 export const INVALIDATE_COUNTRIES = "INVALIDATE_COUNTRIES";
 
 export function invalidateCountries() {

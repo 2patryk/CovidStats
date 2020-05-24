@@ -11,10 +11,10 @@ const defaultState = {
   items: [],
   lastUpdated: 0,
   haveError: false,
+  dateOfDataUpdate: 0
 };
 
 function countries(state = defaultState, action) {
-  console.log(state, action);
   switch (action.type) {
     case INVALIDATE_COUNTRIES:
       return Object.assign({}, state, {

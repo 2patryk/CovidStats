@@ -1,17 +1,15 @@
-import Chart from "chart.js";
-import ChartDataLabels from "chartjs-plugin-datalabels";
-
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import styles from "./DoughnutChart.module.css";
-import { LightenDarkenColor } from "../utils/utils";
-export default class ChartView extends Component {
+import Chart from "chart.js";
+import ChartDataLabels from "chartjs-plugin-datalabels";
+import { lightenDarkenColor } from "../../utils/utils";
+
+export default class DoughnutChart extends Component {
   constructor(props) {
     super(props);
+
     this.myDoughnutChart = null;
-
     this.chartRef = React.createRef();
-
     this.dataset = {};
   }
 
@@ -21,14 +19,14 @@ export default class ChartView extends Component {
   }
 
   componentDidUpdate() {
-    this.updateData();
-    this.buildChart();
+    this.updateChart();
   }
+
 
   render() {
     return (
       <div>
-        <canvas ref={this.chartRef} className={styles.doughnutChart}></canvas>
+        <canvas ref={this.chartRef}></canvas>
       </div>
     );
   }
@@ -37,18 +35,19 @@ export default class ChartView extends Component {
     this.dataset = {
       datasets: [
         {
-          data: [
-            this.props.data.Active,
-            this.props.data.Deaths,
-            this.props.data.Recovered,
-          ],
-          backgroundColor: ["#ffeb3b", "#f44336", "#2196f3"],
-          label: "Division of Confirmed cases",
+          data: this.props.data.data,
+          backgroundColor: this.props.data.colors,
+          label: this.props.data.label,
           datalabels: {},
         },
       ],
-      labels: ["Active", "Deaths", "Recovered"],
+      labels: this.props.data.labels,
     };
+  }
+
+  updateChart() {
+    this.myDoughnutChart.aspectRatio = this.props.isMobile ? 1.1 : 1.6;
+    this.myDoughnutChart.resize();
   }
 
   buildChart() {
@@ -56,26 +55,39 @@ export default class ChartView extends Component {
     this.myDoughnutChart = new Chart(this.chartRef.current, {
       type: "doughnut",
       data: this.dataset,
-      plugins: [ChartDataLabels],
+      plugins: [
+        ChartDataLabels,
+        {
+          beforeInit: function (chart, options) {
+            chart.legend.afterFit = function () {
+              this.height = this.height + 20;
+            };
+          },
+        },
+      ],
       options: {
         plugins: {
           datalabels: {
             borderColor: "white",
+            anchor: "end",
             borderRadius: 50,
             borderWidth: 2,
             backgroundColor: function (context) {
               let ar = context.dataset.backgroundColor.map((value) => {
-                return LightenDarkenColor(value, -17);
+                return lightenDarkenColor(value, -17);
               });
 
               return ar;
             },
             color: "white",
-            display: "true",
+            display: function (context) {
+              return context.dataset.data[context.dataIndex] > 0; // display labels with an odd index
+            },
+            align: "center",
             textShadowColor: "rgba(0,0,0,0.5)",
             textShadowBlur: 5,
             font: {
-              size: 16,
+              size: 14,
             },
             padding: 10,
             labels: {
@@ -84,34 +96,38 @@ export default class ChartView extends Component {
                   weight: "bold",
                 },
               },
-              value: {
-                color: "green",
-                textStrokeColor: "blue",
-              },
+              
             },
             formatter: function (value, context) {
               let total = context.dataset.data.reduce(function (
                 previousValue,
-                currentValue,
+                currentValue
               ) {
                 return previousValue + currentValue;
               });
-              return (value/total * 100).toFixed(2) + "%";
+              return ((value / total) * 100).toFixed(2) + "%";
             },
           },
         },
         cutoutPercentage: 50,
         responsive: true,
-        aspectRatio: 1.5,
-        // maintainAspectRatio: false,
+        aspectRatio: this.props.isMobile ? 1.1 : 1.6,
         legend: {
           display: true,
           position: "top",
+          
         },
-        title: {
-          display: true,
-          text: "Division of Confirmed cases",
+        layout: {
+          padding: {
+            top: 10,
+            bottom: 20,
+          },
         },
+        // title: {
+        //   display: true,
+        //   text: "Division of Confirmed cases",
+        // },
+
         animation: {
           animateScale: true,
           animateRotate: true,
@@ -119,11 +135,14 @@ export default class ChartView extends Component {
         tooltips: {
           callbacks: {
             label: function (tooltipItem, data) {
-             
               var dataset = data.datasets[tooltipItem.datasetIndex];
               var currentValue = dataset.data[tooltipItem.index];
 
-              return data.labels[tooltipItem.index] + ": " + currentValue.toLocaleString();
+              return (
+                data.labels[tooltipItem.index] +
+                ": " +
+                currentValue.toLocaleString()
+              );
             },
           },
         },
@@ -132,6 +151,7 @@ export default class ChartView extends Component {
   }
 }
 
-ChartView.propTypes = {
+DoughnutChart.propTypes = {
   data: PropTypes.object.isRequired,
+  isMobile: PropTypes.bool.isRequired
 };

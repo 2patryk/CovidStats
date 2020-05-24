@@ -2,7 +2,7 @@ import Chart from "chart.js";
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-export default class ChartView extends Component {
+export default class LineChart extends Component {
   constructor(props) {
     super(props);
     this.myLineChart = null;
@@ -17,19 +17,20 @@ export default class ChartView extends Component {
   }
 
   componentDidUpdate() {
-    this.updateData();
-    this.buildChart();
+    this.updateChart();
+  }
+
+  updateChart() {
+    this.myLineChart.aspectRatio = this.props.isMobile ? 1 : 2.5;
+    this.myLineChart.options.elements.point.radius = this.props.isMobile ? 0 : 3;
+    this.myLineChart.resize();
+    this.myLineChart.update();
   }
 
   render() {
     return (
       <div>
-        <canvas
-          id="myChart"
-          ref={this.chartRef}
-          width="1000"
-          height="500"
-        ></canvas>
+        <canvas id="myChart" ref={this.chartRef}></canvas>
       </div>
     );
   }
@@ -77,16 +78,29 @@ export default class ChartView extends Component {
     this.myLineChart = new Chart(this.chartRef.current, {
       type: "line",
       data: this.dataset,
+      plugins:[{
+        beforeInit: function (chart, options) {
+          chart.legend.afterFit = function () {
+            this.height = this.height + 20;
+          };
+        },
+      }],
       options: {
         responsive: true,
+        aspectRatio: this.props.isMobile ? 1 : 2.5,
         elements: {
           point: {
-            radius: 0,
+            radius: this.props.isMobile ? 0 : 3,
           },
         },
         hoverMode: "index",
         stacked: false,
-
+        layout: {
+          padding: {
+            top: 10,
+            bottom: 20,
+          },
+        },
         scales: {
           yAxes: [
             {
@@ -102,6 +116,7 @@ export default class ChartView extends Component {
   }
 }
 
-ChartView.propTypes = {
+LineChart.propTypes = {
   history: PropTypes.array.isRequired,
+  isMobile: PropTypes.bool.isRequired,
 };

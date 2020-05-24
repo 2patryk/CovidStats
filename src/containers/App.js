@@ -1,43 +1,66 @@
 import React, { Component } from "react";
 import ChartDataLabels from "chartjs-plugin-datalabels";
 import Chart from "chart.js";
-// import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-// import {
-// fetchCountriesIfNeeded,
-
-// } from '../store/actions'
-
+import { connect } from "react-redux";
+import { debounce } from "../utils/utils";
+import PropTypes from "prop-types";
+import {
+  setIsMobile
+} from "../store/actions/GlobalActions";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import AllCountriesList from "./AllCountriesList";
 import Country from "./Country";
 import Header from "../components/Header";
 
 class App extends Component {
-  constructor(){
+  constructor() {
     super();
 
     this.state = {
-      searchValue: ""
-    }
+      searchValue: "",
+    };
+
     Chart.plugins.unregister(ChartDataLabels);
+    Chart.defaults.global.aspectRatio = 2;
+
     this.onSearchChanged = this.onSearchChanged.bind(this);
+    this.updateIsMobile = this.updateIsMobile.bind(this);
   }
 
-  onSearchChanged(e){
+  componentDidMount() {
+    this.props.dispatch(setIsMobile({isMobile: (window.innerWidth < 768) ? true : false,}))
+    window.addEventListener("resize", debounce(this.updateIsMobile, 250));
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.updateIsMobile);
+  }
+
+  updateIsMobile() {
+    const lastIsMobile = this.props.isMobile;
+    const isMobile = (window.innerWidth < 768) ? true : false;
     
+    if (lastIsMobile !== isMobile) 
+      this.props.dispatch(setIsMobile({isMobile: isMobile}))
+    
+  }
+
+  onSearchChanged(e) {
     this.setState({
-      searchValue: e.currentTarget.value
-    })
+      searchValue: e.currentTarget.value,
+    });
   }
 
   render() {
     return (
       <div>
         <Router basename="/covid/">
-          <Header onChange={this.onSearchChanged} searchValue={this.state.searchValue}/>
-          <div className="container px-0">
-            <div className="row no-gutters">
+          <Header
+            onChange={this.onSearchChanged}
+            searchValue={this.state.searchValue}
+          />
+          <div className="container">
+            <div className="row">
               <div className="col">
                 <div className="main-box">
                   <Switch>
@@ -55,28 +78,20 @@ class App extends Component {
 
   componentDidUpdate(prevProps) {
     if (prevProps.loading !== this.props.loading) {
-       console.log("Loading change");
+      console.log("Loading change");
     }
+  }
 }
 
-
+App.propTypes = {
+  error: PropTypes.object,
+  isMobile: PropTypes.bool.isRequired,
 }
- export default App;
 
+function mapStateToProps(state) {
+  const { error, isMobile } = state.global || { isMobile: false, error: null };
 
-// AsyncApp.propTypes = {
-//   selectedSubreddit: PropTypes.string.isRequired,
-//   posts: PropTypes.array.isRequired,
-//   isFetching: PropTypes.bool.isRequired,
-//   lastUpdated: PropTypes.number,
-//   dispatch: PropTypes.func.isRequired
-// }
+  return {error, isMobile}
+}
 
-// function mapStateToProps(state){ 
-// const { loading } = state.loading || false;
-
-// return { loading }
-// }
-
-
-// export default connect(mapStateToProps)(App)
+export default connect(mapStateToProps)(App);

@@ -5,13 +5,13 @@ import { Link } from "react-router-dom";
 
 export default class CountryItem extends Component {
   render() {
-    const { onClick, country } = this.props;
+    const { country } = this.props;
     return (
       <Link className={styles.link} to={"/" + country.Slug}>
         <div className={styles.countryItem}>
           <div
             className={`${styles.row} ${styles.row__name}`}
-            onClick={onClick}
+           
           >
             <div className={`${styles.item} ${styles.item__country}`}>
               {country.Country}
@@ -19,7 +19,7 @@ export default class CountryItem extends Component {
           </div>
           <div
             className={`${styles.row} ${styles.row__cases}`}
-            onClick={onClick}
+            
           >
             <div className={`${styles.item} ${styles.item__cases}`}>
               <span className={styles.numberOf}>{country.TotalConfirmed}</span>
@@ -52,6 +52,5 @@ export default class CountryItem extends Component {
 }
 
 CountryItem.propTypes = {
-  onClick: PropTypes.any.isRequired,
   country: PropTypes.any.isRequired,
 };

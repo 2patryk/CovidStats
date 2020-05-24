@@ -5,7 +5,6 @@ import styles from "./CountriesList.module.css";
 
 export default class CountriesList extends Component {
   render() {
-    const { onClick } = this.props;
     return (
       <div className={styles.allCases}>
         <div className={styles.casesHeader}>
@@ -14,10 +13,7 @@ export default class CountriesList extends Component {
               <span>Country</span>
             </div>
           </div>
-          <div
-            className={`${styles.row} ${styles.row__cases}`}
-            onClick={onClick}
-          >
+          <div className={`${styles.row} ${styles.row__cases}`}>
             <div className={`${styles.item} ${styles.item__cases}`}>
               <span>Total confirmed</span>
             </div>
@@ -30,11 +26,7 @@ export default class CountriesList extends Component {
           </div>
         </div>
         {this.props.countries.map((country, i) => (
-          <CountryItem
-            onClick={() => onClick(country.Slug)}
-            key={i}
-            country={country}
-          />
+          <CountryItem key={i} country={country} />
         ))}
       </div>
     );
@@ -42,6 +34,5 @@ export default class CountriesList extends Component {
 }
 
 CountriesList.propTypes = {
-  onClick: PropTypes.any.isRequired,
   countries: PropTypes.array.isRequired,
 };

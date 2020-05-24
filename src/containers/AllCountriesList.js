@@ -8,17 +8,13 @@ import { connect } from "react-redux";
 import CountriesList from "../components/CountriesList";
 import { isEmptyObject } from "../utils/utils";
 import ErrorMessage from "../components/ErrorMessage";
-import DoughnutChart from "../components/DoughnutChart";
+import DoughnutChart from "../components/charts/DoughnutChart";
 import Counter from "../components/Counter";
 import styles from "./AllCountriesList.module.css";
 
 class AllCountriesList extends Component {
   constructor(props) {
     super(props);
-
-    console.log("construcor");
-    this.goToCountry = this.goToCountry.bind(this);
-    //this.handleChange = this.handleChange.bind(this);
     this.handleRefreshClick = this.handleRefreshClick.bind(this);
   }
 
@@ -27,10 +23,6 @@ class AllCountriesList extends Component {
     dispatch(fetchCountriesIfNeeded());
   }
 
-  componentDidUpdate(prevProps) {
-    //   const { dispatch } = this.props
-    //   dispatch(fetchCountriesIfNeeded())
-  }
 
   handleRefreshClick(e) {
     e.preventDefault();
@@ -39,17 +31,15 @@ class AllCountriesList extends Component {
     dispatch(fetchCountriesIfNeeded());
   }
 
-  goToCountry = (countrySlug) => {
-    //history.push("/" + countrySlug);
-  };
 
   render() {
     const {
       countries,
       isFetching,
-      lastUpdated,
+      dateOfDataUpdate,
       haveError,
       summary,
+      isMobile,
     } = this.props;
     return (
       <div>
@@ -63,30 +53,46 @@ class AllCountriesList extends Component {
         )}
         {!isFetching && !haveError && countries.length === 0 && <h2>Empty.</h2>}
         {countries.length > 0 && (
-          <div >
+          <div>
             <div className={`row no-gutters ${styles.summaryRow}`}>
-              <div className={`col-md-6 ${styles.colLeft}`}>
-                <div className="cardMaterial">
-                <Counter data={summary}/>
-                </div>
-              </div>
-              <div className={`col-md-6 ${styles.colRight}`}>
-              <div className="cardMaterial">
-                <DoughnutChart
-                  data={{
+              <div className={`col-md-6 colLeft`}>
+              <h1 className="headerText">Coronavirus worldwide cases</h1>
+                <div className={`cardMaterial flexDefault`}>
+                 
+                  <Counter data={{
                     Deaths: summary.TotalDeaths,
                     Recovered: summary.TotalRecovered,
-                    Active:
-                      summary.TotalConfirmed -
-                      summary.TotalRecovered -
-                      summary.TotalDeaths,
                     Confirmed: summary.TotalConfirmed,
-                  }}
-                />
+                    NewDeaths: summary.NewDeaths,
+                    NewRecovered: summary.NewRecovered,
+                    NewConfirmed: summary.NewConfirmed,
+                    Date: dateOfDataUpdate
+                  }} />
+                </div>
+              </div>
+              <div className={`col-md-6 colRight`}>
+              <h1 className="headerText">Distribution of confirmed cases</h1>
+                <div className="cardMaterial">
+                
+                  <DoughnutChart
+                    isMobile={isMobile}
+                    data={{
+                      labels: ["Active", "Deaths", "Recovered"],
+                      data: [
+                        summary.TotalConfirmed -
+                          summary.TotalRecovered -
+                          summary.TotalDeaths,
+                        summary.TotalDeaths,
+                        summary.TotalRecovered,
+                      ],
+                      colors: ["#ffeb3b", "#f44336", "#2196f3"],
+                      label: "Division of Confirmed cases",
+                    }}
+                  />
                 </div>
               </div>
             </div>
-
+            <h1 className="headerText">List of all countries</h1>
             <CountriesList onClick={this.goToCountry} countries={countries} />
           </div>
         )}
@@ -101,10 +107,11 @@ AllCountriesList.propTypes = {
   lastUpdated: PropTypes.number,
   dispatch: PropTypes.func.isRequired,
   haveError: PropTypes.bool,
+  dateOfDataUpdate: PropTypes.any.isRequired
 };
 
 function mapStateToProps(state) {
-  const { allCountries } = state;
+  const { allCountries, global } = state;
 
   const {
     isFetching,
@@ -113,16 +120,18 @@ function mapStateToProps(state) {
     haveError,
     lastError,
     summary,
-  } = isEmptyObject(allCountries)
-    ? {
+    dateOfDataUpdate
+  } = allCountries
+|| {
         isFetching: true,
         items: [],
         haveError: false,
         lastError: {},
         summary: {},
       }
-    : allCountries;
+    ;
 
+  const { isMobile } = global || { isMobile: false };
   return {
     isFetching,
     countries,
@@ -130,6 +139,8 @@ function mapStateToProps(state) {
     haveError,
     lastError,
     summary,
+    isMobile,
+    dateOfDataUpdate
   };
 }
 

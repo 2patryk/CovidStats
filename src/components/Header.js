@@ -30,8 +30,8 @@ class Header extends Component {
               </Link>
             </div>
             <div className="col-md-9">
-              {/* {(this.props.location.pathname === "/" ? true : false) ? <SearchCountry onChange={onChange} value={searchValue} /> : ""}
-               */}
+              {/* {(this.props.location.pathname === "/" ? true : false) ? <SearchCountry onChange={onChange} value={searchValue} /> : ""} */}
+              
             </div>
           </div>
         </div>

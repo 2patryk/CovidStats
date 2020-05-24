@@ -1,19 +1,26 @@
-import {RESET_ERROR_MESSAGE} from '../actions/GlobalActions';
+import {RESET_ERROR_MESSAGE, SET_IS_MOBILE} from '../actions/GlobalActions';
 import { combineReducers } from "redux";
 
 function error(state = null, action) {
-    const { type, error } = action
-  
-    if (type === RESET_ERROR_MESSAGE) {
+    if (action.type === RESET_ERROR_MESSAGE) {
       return null
-    } else if (error) {
-      return error
+    } else if (action.error) {
+      return action.error
     }
   
-    return state
+    return state;
+  }
+
+  function isMobile(state = false, action){
+    if(action.type === SET_IS_MOBILE){
+      return action.payload.isMobile
+    }
+
+    return state;
   }
   const globalReducer = combineReducers({
-    error
+    error,
+    isMobile
   });
 
   export default globalReducer;
