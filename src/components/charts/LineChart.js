@@ -47,26 +47,34 @@ export default class LineChart extends Component {
       datasets: [
         {
           label: "Confirmed",
-          borderColor: "orange",
-          backgroundColor: "orange",
+          borderColor: "#ff9800",
+          backgroundColor: "#ff9800",
           fill: false,
           data: filteredHistory.map((value) => value.Confirmed),
           yAxisID: "y-axis-1",
         },
         {
           label: "Deaths",
-          borderColor: "red",
-          backgroundColor: "red",
+          borderColor: "#f44336",
+          backgroundColor: "#f44336",
           fill: false,
           data: filteredHistory.map((value) => value.Deaths),
           yAxisID: "y-axis-1",
         },
         {
           label: "Recovered",
-          borderColor: "blue",
-          backgroundColor: "blue",
+          borderColor: "#2196f3",
+          backgroundColor: "#2196f3",
           fill: false,
           data: filteredHistory.map((value) => value.Recovered),
+          yAxisID: "y-axis-1",
+        },
+        {
+          label: "Active",
+          borderColor: "#ffeb3b",
+          backgroundColor: "#ffeb3b",
+          fill: false,
+          data: filteredHistory.map((value) => value.Confirmed - value.Recovered - value.Deaths),
           yAxisID: "y-axis-1",
         },
       ],
@@ -104,7 +112,7 @@ export default class LineChart extends Component {
         scales: {
           yAxes: [
             {
-              type: "linear", // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+              type: "linear",
               display: true,
               position: "left",
               id: "y-axis-1",

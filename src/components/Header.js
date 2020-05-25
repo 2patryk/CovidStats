@@ -1,9 +1,6 @@
 import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
-import styles from "./Header.module.css";
-import { Link } from "react-router-dom";
-import SearchCountry from "./SearchCountry";
-import PropTypes from "prop-types";
+import { withRouter,Link } from "react-router-dom";
+import styles from "./Header.module.css";;
 
 class Header extends Component {
   constructor() {
@@ -13,7 +10,6 @@ class Header extends Component {
   }
 
   render() {
-    const { onChange, searchValue } = this.props;
     return (
       <header>
         <div className="container">
@@ -21,18 +17,14 @@ class Header extends Component {
             <div className="col-md-3">
             <Link className={styles.logoContainer} to={"/"}>
               {this.props.location.pathname !== "/" ? (
-                <span className={`material-icons ${styles.back}`}>arrow_back_ios</span>
+                <span className={`material-icons ${styles.logoContainer__icon}`}>arrow_back_ios</span>
               ) : (
                 ""
               )}
-              
-                <span className={styles.logo}>CovidStats</span>
+                <span className={styles.logoContainer__logo}>CovidStats</span>
               </Link>
             </div>
-            <div className="col-md-9">
-              {/* {(this.props.location.pathname === "/" ? true : false) ? <SearchCountry onChange={onChange} value={searchValue} /> : ""} */}
-              
-            </div>
+            
           </div>
         </div>
       </header>
@@ -40,9 +32,5 @@ class Header extends Component {
   }
 }
 
-Header.propTypes = {
-  onChange: PropTypes.any.isRequired,
-  searchValue: PropTypes.any.isRequired,
-};
 
 export default withRouter(Header);

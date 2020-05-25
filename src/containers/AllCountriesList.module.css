@@ -3,7 +3,10 @@
     /* margin-bottom: 0; */
 }
 
-
+.searchBar{
+    margin: 10px 0 20px 0;
+    display: flex;
+}
 
 
 
@@ -13,10 +16,10 @@
 }
 
 @media (min-width: 768px) {
-    /* .summaryRow{
-        display: flex;
-        margin-bottom: 15px;
-    } */
+    .searchBar{
+        margin: 25px 0 30px 0;
+        justify-content: flex-end;
+    }
 
 }
 

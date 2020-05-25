@@ -22,25 +22,25 @@ export default class CountryItem extends Component {
             
           >
             <div className={`${styles.item} ${styles.item__cases}`}>
-              <span className={styles.numberOf}>{country.TotalConfirmed}</span>
+              <span className={styles.numberOf}>{country.TotalConfirmed.toLocaleString()}</span>
               <span className={styles.new}>
                 {country.NewConfirmed > 0
-                  ? " (+" + country.NewConfirmed + ")"
+                  ? " (+" + country.NewConfirmed.toLocaleString() + ")"
                   : ""}
               </span>
             </div>
             <div className={`${styles.item} ${styles.item__cases}`}>
-              <span className={styles.numberOf}>{country.TotalDeaths}</span>
+              <span className={styles.numberOf}>{country.TotalDeaths.toLocaleString()}</span>
               <span className={styles.new}>
-                {country.NewDeaths > 0 ? " (+" + country.NewDeaths + ")" : ""}
+                {country.NewDeaths > 0 ? " (+" + country.NewDeaths.toLocaleString() + ")" : ""}
               </span>
             </div>
 
             <div className={`${styles.item} ${styles.item__cases}`}>
-              <span className={styles.numberOf}>{country.TotalRecovered}</span>
+              <span className={styles.numberOf}>{country.TotalRecovered.toLocaleString()}</span>
               <span className={styles.new}>
                 {country.NewRecovered > 0
-                  ? " (+" + country.NewRecovered + ")"
+                  ? " (+" + country.NewRecovered.toLocaleString() + ")"
                   : ""}
               </span>
             </div>

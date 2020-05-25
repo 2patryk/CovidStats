@@ -11,6 +11,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import AllCountriesList from "./AllCountriesList";
 import Country from "./Country";
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 class App extends Component {
   constructor() {
@@ -53,13 +54,10 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <div className="app">
         <Router basename="/covid/">
-          <Header
-            onChange={this.onSearchChanged}
-            searchValue={this.state.searchValue}
-          />
-          <div className="container">
+          <Header/>
+          <div className="container mainContent">
             <div className="row">
               <div className="col">
                 <div className="main-box">
@@ -71,6 +69,7 @@ class App extends Component {
               </div>
             </div>
           </div>
+          <Footer/>
         </Router>
       </div>
     );

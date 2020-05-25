@@ -45,6 +45,10 @@
   padding-top: 10px;
 }
 
+.item__cases:last-child{
+  padding-right: 10px;
+}
+
 .item__country {
   padding-left: 20px;
   padding-bottom: 0;

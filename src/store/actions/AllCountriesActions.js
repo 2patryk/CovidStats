@@ -5,6 +5,24 @@ export const RECEIVE_COUNTRIES_SUCCESS = "RECEIVE_COUNTRIES_SUCCESS";
 export const RECEIVE_COUNTRIES_FAILURE = "RECEIVE_COUNTRIES_FAILURE";
 export const INVALIDATE_COUNTRIES = "INVALIDATE_COUNTRIES";
 
+export const SET_FILTER = "SET_FILTER";
+export const SET_SORT = "SET_SORT";
+
+export const CountriesSorts = {
+  BY_CONFIRMED: 'BY_CONFIRMED',
+  BY_RECOVERED: 'BY_RECOVERED',
+  BY_DEATH: 'BY_DEATHS',
+  BY_NAME: 'BY_NAME'
+}
+export const CountriesFilters = {
+  BY_SEARCH_TEXT: 'BY_SEARCH_TEXT',
+}
+
+export const Order = {
+  ASC: 'ASC',
+  DESC: 'DESC'
+}
+
 export function invalidateCountries() {
   return {
     type: INVALIDATE_COUNTRIES,
@@ -28,6 +46,20 @@ function receiveCountriesFailure(error) {
     type: RECEIVE_COUNTRIES_FAILURE,
     error,
   };
+}
+
+export function setFilter(payload){
+  return {
+    type: SET_FILTER,
+    payload
+  }
+}
+
+export function setSort(payload){
+  return {
+    type: SET_SORT,
+    payload
+  }
 }
 
 function fetchCountries() {

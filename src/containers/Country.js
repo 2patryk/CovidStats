@@ -7,11 +7,22 @@ import { connect } from "react-redux";
 import LineChart from "../components/charts/LineChart";
 import DoughnutChart from '../components/charts/DoughnutChart';
 import Counter from "../components/Counter";
+import Error from "../components/Error";
+import Loading from "../components/Loading";
 
 class Country extends Component {
-  // constructor(props) {
-  //   super(props);
-  // }
+  constructor(props) {
+    super(props);
+
+    this.handleRefreshClick = this.handleRefreshClick.bind(this);
+  }
+
+  handleRefreshClick(e) {
+    e.preventDefault();
+    const { dispatch,match: { params } } = this.props;
+    dispatch(invalidateCountry());
+    dispatch(fetchCountryIfNeeded(params.country));
+  }
 
   componentDidMount() {
     const {
@@ -20,25 +31,16 @@ class Country extends Component {
     } = this.props;
     dispatch(fetchCountryIfNeeded(params.country));
   }
-
-  componentDidUpdate(prevProps) {
-    const {
-      dispatch,
-      match: { params },
-    } = this.props;
-    const oldParams = prevProps.match.params;
-    // console.log(oldParams);
-    // console.log(params);
-    if (oldParams && oldParams.country !== params.country)
-      dispatch(invalidateCountry());
-    dispatch(fetchCountryIfNeeded(params.country));
-  }
-  v;
+  
 
   render() {
-    const { history, name, lastUpdated, isMobile } = this.props;
+    const { history, name, lastUpdated, isMobile,haveError,error,isFetching } = this.props;
     return (
       <div>
+        {haveError ? <Error onClick={this.handleRefreshClick} error={error} /> : ""}
+        {isFetching && (
+          <Loading/>
+        )}
         {history.length > 0 ? (
           <div>
             <div className="row no-gutters">
@@ -88,14 +90,6 @@ class Country extends Component {
                 </div>
               </div>
             </div>
-
-
-            {/* <CountryView
-              isMobile={isMobile}
-              name={name}
-              history={history}
-              lastUpdated={lastUpdated}
-            /> */}
           </div>
         ) : (
           ""
@@ -115,17 +109,15 @@ function mapStateToProps(state) {
     country,
     history,
     haveError,
-    lastError,
   } = selectedCountry || {
     name: "",
     lastUpdated: 0,
     isFetching: true,
     history: [],
     haveError: false,
-    lastError: {},
   };
 
-  const { isMobile } = global || { isMobile: false };
+  const { isMobile,error } = global || { isMobile: false };
 
   return {
     name,
@@ -134,8 +126,8 @@ function mapStateToProps(state) {
     country,
     history,
     haveError,
-    lastError,
     isMobile,
+    error
   };
 }
 

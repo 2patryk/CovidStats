@@ -1,9 +1,9 @@
 import {RESET_ERROR_MESSAGE, SET_IS_MOBILE} from '../actions/GlobalActions';
 import { combineReducers } from "redux";
 
-function error(state = null, action) {
+function error(state = {}, action) {
     if (action.type === RESET_ERROR_MESSAGE) {
-      return null
+      return {}
     } else if (action.error) {
       return action.error
     }

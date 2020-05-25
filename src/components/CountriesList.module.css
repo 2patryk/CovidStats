@@ -48,6 +48,10 @@
 .item__country {
   padding-left: 20px;
 }
+
+.item__header{
+  cursor: pointer;
+}
 /*######################### MEDIA ######################### */
 
 @media (min-width: 576px) {

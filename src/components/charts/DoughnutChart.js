@@ -123,11 +123,6 @@ export default class DoughnutChart extends Component {
             bottom: 20,
           },
         },
-        // title: {
-        //   display: true,
-        //   text: "Division of Confirmed cases",
-        // },
-
         animation: {
           animateScale: true,
           animateRotate: true,

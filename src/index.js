@@ -6,10 +6,6 @@ import * as serviceWorker from './serviceWorker';
 import Root from "./containers/Root";
 
 
-
-// https://api.covid19api.com/summary
-// https://api.covid19api.com/live/country/:slug
-
 ReactDOM.render(
 
   // <React.StrictMode>
