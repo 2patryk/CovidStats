@@ -55,7 +55,7 @@ class App extends Component {
   render() {
     return (
       <div className="app">
-        <Router basename="/covid/">
+        <Router>
           <Header/>
           <div className="container mainContent">
             <div className="row">
