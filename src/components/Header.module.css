@@ -20,8 +20,21 @@ margin-right: 15px;
 }
 
 .LogoContainer_logo{
-   font-weight: 500;
-    font-size: 1.5rem;
+    position: relative;
+    font-weight: 600;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.LogoContainer_logo::after{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    width: 50%;
+    content: '';
+    background-color: var(--text-color-normal);
 }
 
 /*######################### MEDIA ######################### */
