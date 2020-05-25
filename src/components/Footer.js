@@ -14,14 +14,14 @@ class Footer extends Component {
         <div className="container">
           <div className="row">
             <div className="col">
-              <div className={styles.footerBox}>
-                <div className={styles.footerBox__line}></div>
-                <a className={styles.footerBox__link} href="https://patryk.fun">
-                  <span className={styles.footerBox__text}>
+              <div className={styles.FooterBox}>
+                <div className={styles.FooterBox_line}></div>
+                <a className={styles.FooterBox_link} href="https://patryk.fun">
+                  <span className={styles.FooterBox_text}>
                    Page created by Patryk Ordon
                   </span>
                   <img
-                    className={styles.footerBox__logo}
+                    className={styles.FooterBox_logo}
                     alt="PatrykOrdon's logo"
                     src="https://patryk.fun/images/logo_black.png"
                   />

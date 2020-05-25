@@ -1,17 +1,17 @@
-.spinner {
+.Spinner {
   margin: 100px auto 100px;
   width: 70px;
   text-align: center;
 }
 
-.spinnerContainer{
+.SpinnerContainer{
     display: flex;
     justify-content: center;
     align-items: center;
     /* height: 70vh; */
 }
 
-.spinner > div {
+.Spinner > div {
   width: 18px;
   height: 18px;
   background-color: var(--text-color-normal);
@@ -21,12 +21,12 @@
   animation: sk-bouncedelay 1.4s infinite ease-in-out both;
 }
 
-.spinner .bounce1 {
+.Spinner .Bounce1 {
   -webkit-animation-delay: -0.32s;
   animation-delay: -0.32s;
 }
 
-.spinner .bounce2 {
+.Spinner .Bounce2 {
   -webkit-animation-delay: -0.16s;
   animation-delay: -0.16s;
 }

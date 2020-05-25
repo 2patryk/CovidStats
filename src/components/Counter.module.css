@@ -1,29 +1,29 @@
-.root{
+.Root{
     display: flex;
     flex: 1;
     flex-direction: column;
     height: 100%;
 }
 
-.counterContainer {
+.CounterContainer {
   display: flex;
   font-size: 1.3rem;
   flex-wrap: wrap;
   flex: 1;
 }
 
-.counterItem__new{
+.CounterItem_new{
     font-size: 1.15rem;
     color: var(--text-color-light);
 }
-.counterItem__cases{
+.CounterItem_cases{
   position: relative;
   margin: 3px 0;
   font-weight: 600;
   padding-left: 15px;
 }
 
-.counterItem__cases::before{
+.CounterItem_cases::before{
   position: absolute;
   left: 0;
   bottom: 55%;
@@ -35,32 +35,29 @@
   border-radius: 30px;
 }
 
-.counterItem__casesdeaths::before{
+.CounterItem___casesdeaths::before{
   background: #f44336;
 }
-.counterItem__casesrecovered::before{
+.CounterItem___casesrecovered::before{
   background: #2196f3;
 }
-.counterItem__casesactive::before{
+.CounterItem___casesactive::before{
   background: #ffeb3b;
 }
-.counterItem__casesconfirmed::before{
+.CounterItem___casesconfirmed::before{
   background: #ff9800;
 }
 
-.counterItem {
+.CounterItem {
   display: flex;
   margin-bottom: 15px;
   flex: 0 0 50%;
 }
 
-.counterItem > div {
+.CounterItem > div {
   display: flex;
   flex-direction: column;
   position: relative;
-  /* align-items: center;
-  justify-content: center; */
-  
 }
 
 .numOfCases {

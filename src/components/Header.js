@@ -15,13 +15,13 @@ class Header extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-3">
-            <Link className={styles.logoContainer} to={"/"}>
+            <Link className={styles.LogoContainer} to={"/"}>
               {this.props.location.pathname !== "/" ? (
-                <span className={`material-icons ${styles.logoContainer__icon}`}>arrow_back_ios</span>
+                <span className={`material-icons ${styles.LogoContainer_icon}`}>arrow_back_ios</span>
               ) : (
                 ""
               )}
-                <span className={styles.logoContainer__logo}>CovidStats</span>
+                <span className={styles.LogoContainer_logo}>CovidStats</span>
               </Link>
             </div>
             

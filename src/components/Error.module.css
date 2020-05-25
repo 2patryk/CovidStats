@@ -1,16 +1,16 @@
-.errorContainer{
+.ErrorContainer{
     display: flex;
     justify-content: center;
     align-items: center;
     height: 70vh;
 }
 
-.error{
+.Error{
     display: flex;
     flex-direction: column;
 }
 
-.error__button{
+.Error_button{
     margin-top:10px;
     background: var(--header-color);
     border: 0;

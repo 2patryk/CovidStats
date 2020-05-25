@@ -11,22 +11,22 @@ export default class CountriesList extends Component {
 
   render() {
     return (
-      <div className={styles.allCases}>
-        <div className={styles.casesHeader}>
-          <div className={`${styles.row} ${styles.row__name}`}>
-            <div className={`${styles.item} ${styles.item__country}`}>
-              <span className={styles.item__header} onClick={() => this.handleClick(CountriesSorts.BY_NAME)}>Country</span>
+      <div className={styles.AllCases}>
+        <div className={styles.CasesHeader}>
+          <div className={`${styles.Row} ${styles.Row___name}`}>
+            <div className={`${styles.Item} ${styles.Item___country}`}>
+              <span className={styles.Item_header} onClick={() => this.handleClick(CountriesSorts.BY_NAME)}>Country</span>
             </div>
           </div>
-          <div className={`${styles.row} ${styles.row__cases}`}>
-            <div className={`${styles.item} ${styles.item__cases}`}>
-              <span className={styles.item__header} onClick={() => this.handleClick(CountriesSorts.BY_CONFIRMED)}>Total confirmed</span>
+          <div className={`${styles.Row} ${styles.Row___cases}`}>
+            <div className={`${styles.Item} ${styles.Item___cases}`}>
+              <span className={styles.Item_header} onClick={() => this.handleClick(CountriesSorts.BY_CONFIRMED)}>Total confirmed</span>
             </div>
-            <div className={`${styles.item} ${styles.item__cases}`}>
-              <span className={styles.item__header} onClick={() => this.handleClick(CountriesSorts.BY_DEATH)}>Total death</span>
+            <div className={`${styles.Item} ${styles.Item___cases}`}>
+              <span className={styles.Item_header} onClick={() => this.handleClick(CountriesSorts.BY_DEATH)}>Total death</span>
             </div>
-            <div className={`${styles.item} ${styles.item__cases}`}>
-              <span className={styles.item__header} onClick={() => this.handleClick(CountriesSorts.BY_RECOVERED)}>Total recovered</span>
+            <div className={`${styles.Item} ${styles.Item___cases}`}>
+              <span className={styles.Item_header} onClick={() => this.handleClick(CountriesSorts.BY_RECOVERED)}>Total recovered</span>
             </div>
           </div>
         </div>

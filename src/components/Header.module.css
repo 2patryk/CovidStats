@@ -11,15 +11,15 @@ header{
     z-index:10;
 }
 
-.logoContainer{
+.LogoContainer{
 display: flex;
 align-items: center;}
 
-.logoContainer__icon{
+.LogoContainer_icon{
 margin-right: 15px;
 }
 
-.logoContainer__logo{
+.LogoContainer_logo{
    font-weight: 500;
     font-size: 1.5rem;
 }
@@ -31,7 +31,7 @@ margin-right: 15px;
 }
 
 @media (min-width: 768px) {
-    .logoContainer__icon{
+    .LogoContainer_icon{
         margin-right: 20px;
         }
     header{

@@ -8,7 +8,7 @@ input:focus {
 }
 
 /* form starting stylings ------------------------------- */
-.group {
+.Group {
   position: relative;
   flex: 1;
 }
@@ -48,14 +48,14 @@ input:valid ~ label {
   color: var(--text-color-normal);
 }
 
-/* BOTTOM BARS ================================= */
-.bar {
+/* BOTTOM BarS ================================= */
+.Bar {
   position: relative;
   display: block;
   width: 100%;
 }
-.bar:before,
-.bar:after {
+.Bar:before,
+.Bar:after {
   content: "";
   height: 1px;
   width: 0;
@@ -66,21 +66,21 @@ input:valid ~ label {
   -moz-transition: 0.2s ease all;
   -webkit-transition: 0.2s ease all;
 }
-.bar:before {
+.Bar:before {
   left: 50%;
 }
-.bar:after {
+.Bar:after {
   right: 50%;
 }
 
 /* active state */
-input:focus ~ .bar:before,
-input:focus ~ .bar:after {
+input:focus ~ .Bar:before,
+input:focus ~ .Bar:after {
   width: 50%;
 }
 
 /* HIGHLIGHTER ================================== */
-.highlight {
+.Highlight {
   position: absolute;
   height: 60%;
   width: 100px;
@@ -91,7 +91,7 @@ input:focus ~ .bar:after {
 }
 
 /* active state */
-input:focus ~ .highlight {
+input:focus ~ .Highlight {
   -webkit-animation: inputHighlighter 0.3s ease;
   -moz-animation: inputHighlighter 0.3s ease;
   animation: inputHighlighter 0.3s ease;

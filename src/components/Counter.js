@@ -6,13 +6,13 @@ export default class Counter extends Component {
   render() {
     const { data } = this.props;
     return (
-      <div className={styles.root}>
-        <div className={styles.counterContainer}>
-          <div className={styles.counterItem}>
-            <div className={styles.counterItem__container}>
+      <div className={styles.Root}>
+        <div className={styles.CounterContainer}>
+          <div className={styles.CounterItem}>
+            <div className={styles.CounterItem__container}>
               <span>Confirmed:</span>
-              <span className={`${styles.counterItem__cases} ${styles.counterItem__casesconfirmed} `}>{data.Confirmed.toLocaleString()}</span>
-              <span className={styles.counterItem__new}>
+              <span className={`${styles.CounterItem_cases} ${styles.CounterItem___casesconfirmed} `}>{data.Confirmed.toLocaleString()}</span>
+              <span className={styles.CounterItem_new}>
                 (
                 {(data.NewConfirmed > 0 ? "+" : "") +
                   data.NewConfirmed.toLocaleString()}
@@ -21,13 +21,13 @@ export default class Counter extends Component {
             </div>
           </div>
 
-          <div className={styles.counterItem}>
-          <div className={styles.counterItem__container}>
+          <div className={styles.CounterItem}>
+          <div className={styles.CounterItem__container}>
             <span>Active:</span>
-            <span className={`${styles.counterItem__cases} ${styles.counterItem__casesactive} `}>
+            <span className={`${styles.CounterItem_cases} ${styles.CounterItem___casesactive} `}>
               {((data.Confirmed - data.Deaths - data.Recovered)).toLocaleString()}
             </span>
-            <span className={styles.counterItem__new}>
+            <span className={styles.CounterItem_new}>
               (
               {((data.NewConfirmed - data.NewDeaths - data.NewRecovered) > 0 ? "+" : "") +
                 (
@@ -40,11 +40,11 @@ export default class Counter extends Component {
             </div>
           </div>
 
-          <div className={styles.counterItem}>
-          <div className={styles.counterItem__container}>
+          <div className={styles.CounterItem}>
+          <div className={styles.CounterItem__container}>
             <span>Recovered:</span>
-            <span className={`${styles.counterItem__cases} ${styles.counterItem__casesrecovered} `}>{data.Recovered.toLocaleString()}</span>
-            <span className={styles.counterItem__new}>
+            <span className={`${styles.CounterItem_cases} ${styles.CounterItem___casesrecovered} `}>{data.Recovered.toLocaleString()}</span>
+            <span className={styles.CounterItem_new}>
               (
               {(data.NewRecovered > 0 ? "+" : "") +
                 data.NewRecovered.toLocaleString()}
@@ -52,11 +52,11 @@ export default class Counter extends Component {
             </span>
             </div>
           </div>
-          <div className={styles.counterItem}>
-          <div className={styles.counterItem__container}>
+          <div className={styles.CounterItem}>
+          <div className={styles.CounterItem__container}>
             <span>Deaths:</span>
-            <span className={`${styles.counterItem__cases} ${styles.counterItem__casesdeaths} `}>{data.Deaths.toLocaleString()}</span>
-            <span className={styles.counterItem__new}>
+            <span className={`${styles.CounterItem_cases} ${styles.CounterItem___casesdeaths} `}>{data.Deaths.toLocaleString()}</span>
+            <span className={styles.CounterItem_new}>
               (
               {(data.NewDeaths > 0 ? "+" : "") +
                 data.NewDeaths.toLocaleString()}

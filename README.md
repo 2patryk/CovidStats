@@ -1,4 +1,11 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Live preview
+Website preview is available here: [https://priceless-franklin-fc3dbe.netlify.app/](https://priceless-franklin-fc3dbe.netlify.app/)
+
+## Setup
+To run this project run command: 
+### `npm i`
+
+Then use the scripts below
 
 ## Available Scripts
 

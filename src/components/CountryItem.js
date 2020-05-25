@@ -7,38 +7,38 @@ export default class CountryItem extends Component {
   render() {
     const { country } = this.props;
     return (
-      <Link className={styles.link} to={"/" + country.Slug}>
-        <div className={styles.countryItem}>
+      <Link className={styles.Link} to={"/" + country.Slug}>
+        <div className={styles.CountryItem}>
           <div
-            className={`${styles.row} ${styles.row__name}`}
+            className={`${styles.Row} ${styles.Row_name}`}
            
           >
-            <div className={`${styles.item} ${styles.item__country}`}>
+            <div className={`${styles.Item} ${styles.Item_country}`}>
               {country.Country}
             </div>
           </div>
           <div
-            className={`${styles.row} ${styles.row__cases}`}
+            className={`${styles.Row} ${styles.Row_cases}`}
             
           >
-            <div className={`${styles.item} ${styles.item__cases}`}>
-              <span className={styles.numberOf}>{country.TotalConfirmed.toLocaleString()}</span>
-              <span className={styles.new}>
+            <div className={`${styles.Item} ${styles.Item_cases}`}>
+              <span className={styles.NumberOf}>{country.TotalConfirmed.toLocaleString()}</span>
+              <span className={styles.New}>
                 {country.NewConfirmed > 0
                   ? " (+" + country.NewConfirmed.toLocaleString() + ")"
                   : ""}
               </span>
             </div>
-            <div className={`${styles.item} ${styles.item__cases}`}>
-              <span className={styles.numberOf}>{country.TotalDeaths.toLocaleString()}</span>
-              <span className={styles.new}>
+            <div className={`${styles.Item} ${styles.Item_cases}`}>
+              <span className={styles.NumberOf}>{country.TotalDeaths.toLocaleString()}</span>
+              <span className={styles.New}>
                 {country.NewDeaths > 0 ? " (+" + country.NewDeaths.toLocaleString() + ")" : ""}
               </span>
             </div>
 
-            <div className={`${styles.item} ${styles.item__cases}`}>
-              <span className={styles.numberOf}>{country.TotalRecovered.toLocaleString()}</span>
-              <span className={styles.new}>
+            <div className={`${styles.Item} ${styles.Item_cases}`}>
+              <span className={styles.NumberOf}>{country.TotalRecovered.toLocaleString()}</span>
+              <span className={styles.New}>
                 {country.NewRecovered > 0
                   ? " (+" + country.NewRecovered.toLocaleString() + ")"
                   : ""}

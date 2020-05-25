@@ -1,11 +1,11 @@
-.allCases {
+.AllCases {
   border-radius: 10px;
   box-shadow: 0 5px 20px rgba(0,0,0,.07);
   display: flex;
   flex-direction: column;
 }
 
-.casesHeader {
+.CasesHeader {
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
   display: flex;
@@ -19,37 +19,37 @@
   top: 60px;
 }
 
-.row {
+.Row {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
 }
 
-.row__name {
+.Row___name {
   display: none;
   flex-basis: 100%;
 }
 
-.row__cases {
+.Row___cases {
   flex-basis: 100%;
 }
 
-.item {
+.Item {
   flex: 1;
   padding: 15px 0;
   padding-left: 20px;
   flex-basis: 1;
 }
 
-.item__cases {
+.Item___cases {
   flex-basis: 33.33%;
 }
 
-.item__country {
+.Item___country {
   padding-left: 20px;
 }
 
-.item__header{
+.Item_header{
   cursor: pointer;
 }
 /*######################### MEDIA ######################### */
@@ -58,26 +58,26 @@
 }
 
 @media (min-width: 768px) {
-  .row__name {
+  .Row___name {
     display: block;
   }
-  .casesHeader {
+  .CasesHeader {
     top: 60px;
   }
-  .countryItem {
+  .CountryItem {
     padding-bottom: 0;
   }
-  .item {
+  .Item {
     padding-left: 0;
   }
-  .item__country {
+  .Item___country {
     padding-left: 20px;
   }
-  .row__name {
+  .Row___name {
     flex-basis: 30%;
   }
 
-  .row__cases {
+  .Row___cases {
     flex-basis: 70%;
   }
 }
@@ -86,7 +86,7 @@
 }
 
 @media (min-width: 1200px) {
-  .casesHeader {
+  .CasesHeader {
     top: 65px;
   }
 }

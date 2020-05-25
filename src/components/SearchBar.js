@@ -5,7 +5,7 @@ export default class SearchBar extends Component {
   render() {
     const { onChange, value } = this.props;
     return (
-      <div className={styles.group}>
+      <div className={styles.Group}>
         <input
           className={styles.SearchBar}
           type="text"
@@ -13,8 +13,8 @@ export default class SearchBar extends Component {
           onChange={onChange}
           required
         />
-        <span className={styles.highlight}></span>
-        <span className={styles.bar}></span>
+        <span className={styles.Highlight}></span>
+        <span className={styles.Bar}></span>
         <label>Search country</label>
       </div>
     );
